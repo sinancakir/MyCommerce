@@ -1,0 +1,20 @@
+﻿@using MyCommerce.Models
+@model List<Urunler>
+@foreach (Urunler item in Model)
+{
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+            <a href="/Urun/Detay/@(item.UrunID)"><img class="card-img-top" src="~/Images/@(item.UrunAdi).jpg" alt=""></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="/Urun/Detay/@item.UrunID">@item.UrunAdi</a>
+                </h4>
+                <h5>@((Math.Round((double)item.BirimFiyati, 2)).ToString("C2"))</h5>
+                <p class="card-text">@item.BirimdekiMiktar</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+        </div>
+    </div>
+}

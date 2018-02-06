@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @if (ViewBag.Detay != null)
+    {
+        <title>@(ViewBag.Detay) &nbsp;-&nbsp;My Commerce </title>
+    }
+    else
+    {
+        <title>My Commerce</title>
+    }
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="~/css/shop-homepage.css" rel="stylesheet">
+    <link href="~/css/shop-item.css" rel="stylesheet" />
+
+
+    @RenderSection("head", false)
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark fixed-top">
+
+        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-heart-empty"></span> My Commerce</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Yönetim</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav float-md-right">
+                @if (Session["user"] != null)
+                {
+                    MyCommerce.Models.SiteUsers user = Session["user"] as MyCommerce.Models.SiteUsers;
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            @(user.Ad + " " + user.Soyad)
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../Home/LogOut" class="nav-link">Çıkış</a>
+                    </li>
+
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Üye Ol</a>
+                    </li>
+                }
+
+
+
+            </ul>
+        </div>
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <h2 class="my-4"><i>My Commerce</i></h2>
+                <div class="list-group list">
+                    <a href="/Urun/Sepet" class="list-group-item"><span class="glyphicon glyphicon-log-in"></span>Sepetim</a>
+                    <a href="#" class="list-group-item">Category 2</a>
+                    <a href="#" class="list-group-item">Category 3</a>
+                </div>
+            </div>
+            <!-- /.col-lg-3 -->
+
+            @RenderBody()
+
+            <!-- /.col-lg-9 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"><p class="m-0 text-center text-white">Copyright &copy;&nbsp;<b><i>My Commerce</i></b>  - @DateTime.Now.ToString("dd MMMM  yyyy")</p></div>
+                <div class="col-md-4"><p class="m-0 text-center text-white">Copyright &copy;&nbsp;<b><i>My Commerce</i></b>  - @DateTime.Now.ToString("dd MMMM  yyyy")</p></div>
+
+                <div class="col-md-4"><p class="m-0 text-center text-white">Copyright &copy;&nbsp;<b><i>My Commerce</i></b>  - @DateTime.Now.ToString("dd MMMM  yyyy")</p></div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

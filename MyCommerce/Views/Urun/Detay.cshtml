@@ -1,0 +1,81 @@
+﻿@using MyCommerce.Models
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Urunler
+
+@section head{
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btnSepetEkle").click(function () {
+                var uid = $(this).attr("name");
+                //var uuid = $(this).data("id");
+                $.ajax({
+                    type: "POST",
+                    url: "/Urun/SepetEkle",
+                    data: { id: uid },
+                    success: function () {
+                        window.location.replace("/Home/Index")
+                    }, error: function () {
+                        alert("eklenemedi");
+                    }
+
+                });
+            });
+        });
+    </script>
+
+
+
+}
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Model.UrunAdi adlı ürün sepete eklendi.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-9">
+    <div class="card mt-4">
+        <img class="card-img-top img-fluid" src="~/Images/@(Model.UrunAdi).jpg" alt="@Model.UrunAdi">
+        <div class="card-body">
+            <h3 class="card-title">@Model.UrunAdi</h3>
+            <h4>@((Math.Round((double)Model.BirimFiyati, 2)).ToString("C2"))</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+            4.0 stars
+        </div>
+    </div>
+    <!-- /.card -->
+    <div class="card card-outline-secondary my-4">
+        <div class="card-header">
+            Ürün Özellikleri
+        </div>
+        <div class="card-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr>
+            <a href="/Home/Index" class="btn btn-success">Ana Sayfa</a> &nbsp; &nbsp;
+            <button class="btn btn-danger" id="btnSepetEkle" name="@Model.UrunID" data-id="@Model.UrunID" data-toggle="modal" data-target="#myModal">Sepete Ekle</button>
+
+
+        </div>
+    </div>
+    <!-- /.card -->
+</div>
+

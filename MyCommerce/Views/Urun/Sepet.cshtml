@@ -1,0 +1,43 @@
+﻿@using MyCommerce.ViewModel
+@using MyCommerce.Models
+@model Sepet
+
+
+@{
+    ViewBag.Title = "Sepet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["sepettemi"] != null)
+{
+    int sayac = 1;
+    //Sepet SepettekiUrunler = Session["sepettemi"] as Sepet;
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Sıra</th>
+                <th>RESIM</th>
+                <th>ADI</th>
+                <th>FİYAT</th>
+                <th>ADET</th>
+            </tr>
+        </thead>
+        @foreach(SepetUrunler item in Model.urunler)
+        {
+
+            <tbody>
+                <tr>
+                    <th scope="row">@sayac</th>
+                    <td><img src="~/Images/@(item.urun.UrunAdi).jpg" width="100" height="100" /></td>
+                    <td>@item.urun.UrunAdi</td>
+                    <td>@item.urun.BirimFiyati</td>
+                    <td>@item.Adet</td>
+                </tr>
+
+            </tbody>
+        }
+    </table>
+
+
+
+}
